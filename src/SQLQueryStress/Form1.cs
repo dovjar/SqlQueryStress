@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -78,6 +79,8 @@ namespace SQLQueryStress
         //some cases.  For instance, look at time reported for
         //WAITFOR DELAY '00:00:05'  (1300 ms?? WTF??)
         private int _totalTimeMessages;
+
+        
 
         public Form1(string configFile) : this()
         {
@@ -171,6 +174,9 @@ namespace SQLQueryStress
             mainUITimer.Stop();
 
             UpdateUi();
+
+            if (autoCopyToolStripMenuItem.Checked)
+                copyMetricsToClipboard();
 
             go_button.Enabled = true;
             cancel_button.Enabled = false;
@@ -538,5 +544,33 @@ namespace SQLQueryStress
                 ? "Cache freed"
                 : "Errors encountered");
         }
+
+        private void copyMetricsToClipboard()
+        {
+            var data = new List<string>();
+            var sqlControl = elementHost1.Child as SqlControl;
+            if (sqlControl != null)
+                data.Add(string.Join(" ", sqlControl.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Take(3)));
+            data.Add(threads_numericUpDown.Text);
+            data.Add(threads_numericUpDown.Text);
+            data.Add(iterationsSecond_textBox.Text);
+            data.Add(cpuTime_textBox.Text);
+            data.Add(actualSeconds_textBox.Text);
+            data.Add(elapsedTime_textBox.Text);
+            data.Add(avgSeconds_textBox.Text);
+            data.Add(logicalReads_textBox.Text);
+
+            string tabbedText = string.Join("\t", data);
+            Clipboard.SetText(tabbedText);
+
+        }
+
+        private void copyMetricsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyMetricsToClipboard();
+            MessageBox.Show("Metrics copied to clipboard");
+        }
+
+        
     }
 }

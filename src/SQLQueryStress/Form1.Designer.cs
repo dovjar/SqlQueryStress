@@ -98,6 +98,9 @@ namespace SQLQueryStress
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.sqlControl1 = new SQLQueryStress.SqlControl();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyMetricsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iterations_numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.threads_numericUpDown)).BeginInit();
@@ -123,7 +126,8 @@ namespace SQLQueryStress
             this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(733, 24);
@@ -678,6 +682,30 @@ namespace SQLQueryStress
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.sqlControl1;
             // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyMetricsToolStripMenuItem,
+            this.autoCopyToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // copyMetricsToolStripMenuItem
+            // 
+            this.copyMetricsToolStripMenuItem.Name = "copyMetricsToolStripMenuItem";
+            this.copyMetricsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyMetricsToolStripMenuItem.Text = "Copy metrics";
+            this.copyMetricsToolStripMenuItem.Click += new System.EventHandler(this.copyMetricsToolStripMenuItem_Click);
+            // 
+            // autoCopyToolStripMenuItem
+            // 
+            this.autoCopyToolStripMenuItem.CheckOnClick = true;
+            this.autoCopyToolStripMenuItem.Name = "autoCopyToolStripMenuItem";
+            this.autoCopyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.autoCopyToolStripMenuItem.Text = "Auto copy";
+            this.autoCopyToolStripMenuItem.ToolTipText = "Auto copy metrics to clipboard atfer run";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -760,6 +788,9 @@ namespace SQLQueryStress
         private Button btnCleanBuffer;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private SqlControl sqlControl1;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem copyMetricsToolStripMenuItem;
+        private ToolStripMenuItem autoCopyToolStripMenuItem;
     }
 }
 
