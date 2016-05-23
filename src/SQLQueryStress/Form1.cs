@@ -552,7 +552,7 @@ namespace SQLQueryStress
             if (sqlControl != null)
                 data.Add(string.Join(" ", sqlControl.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Take(3)));
             data.Add(threads_numericUpDown.Text);
-            data.Add(threads_numericUpDown.Text);
+            data.Add(iterations_numericUpDown.Text);
             data.Add(iterationsSecond_textBox.Text);
             data.Add(cpuTime_textBox.Text);
             data.Add(actualSeconds_textBox.Text);
